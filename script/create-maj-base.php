@@ -11,13 +11,10 @@ if(!defined('INC_FROM_DOLIBARR')) {
 }
 
 
-/* uncomment
-
-
-dol_include_once('/mymodule/class/xxx.class.php');
+dol_include_once('/kiwi/class/kiwi.class.php');
 
 $PDOdb=new TPDOdb;
 
-$o=new TXXX($db);
+$o=new TKiwi($db);
 $o->init_db_by_vars($PDOdb);
-*/
+
