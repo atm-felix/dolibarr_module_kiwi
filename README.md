@@ -15,5 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+ Pour les curieux qui auraient cliqué sur ce fichier, le lien montrant sa création (et donc son absence de finalité) 
+ se trouve ici : https://youtu.be/Hsw6TR6kajI
 
 
