@@ -63,10 +63,24 @@ class ActionsKiwi
 	{
 		if (in_array('thirdpartycard', explode(':', $parameters['context'])))
 		{
+			
+			global $db,$langs,$conf,$user;
 		  
 		  ?>
 		  <tr>
-		  	<td>More contents</td>
+		  	<td><?php echo $langs->trans('NumberOfKiwi') ?></td>
+		  	<td><?php 
+		  	
+		  	define('INC_FROM_DOLIBARR', true);
+		  	dol_include_once('/kiwi/config.php');
+			dol_include_once('/kiwi/class/kiwi.class.php');
+			
+			$PDOdb=new TPDOdb;
+			$nb = TKiwi::getNumber($PDOdb, $object->id);
+			
+			echo $nb.img_picto('Picto au pif', 'info_black.png');
+			
+		  	?></td>
 		  </tr>
 		  <?php
 		  	

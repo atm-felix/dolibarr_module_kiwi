@@ -6,6 +6,7 @@
 	dol_include_once('/kiwi/class/kiwi.class.php');
 	dol_include_once('/core/lib/company.lib.php');
 	
+	
 	$fk_soc = GETPOST('id');
 	
 	$object=new Societe($db);
@@ -41,19 +42,58 @@ function _card(&$object) {
 	
 	
 	// sélection d'un produit dans une catégorie défini dans l'admin
-	echo $form->select_produits_list($selected,$htmlname,$filtertype,$limit,$price_level,'',$status,$finished,0,$socid);
-	
-	// affichage de la liste des kiwi associés
+	// on utilise un sélecteur custom car pas de filtre natif sur catégorie pour ce combo dans dolibarr
 	
 	$PDOdb = new TPDOdb;
 	
-	$kiwi = new TKiwi;
+	$TProduct = TKiwi::getProduct($PDOdb);
+	
+	$formCore=new TFormCore;
+	
+	echo $formCore->combo($langs->trans('KiwiToAdd'), 'fk_kiwi', $TProduct, 0);
+	
+	// affichage de la liste des kiwi associés
+	
+	$l=new TListviewTBS('lKiwi');
+	$sql = "SELECT fk_product,date_cre FROM ".MAIN_DB_PREFIX."kiwi WHERE fk_soc = ".$object->id;
+	
+	
+	
+	echo $l->render($PDOdb, $sql,array(
+	
+		'title'=>array(
+			'fk_product'=>$langs->trans('Product')
+			,'date_cre'=>$langs->trans('Date')
+		)
+		,'type'=>array(
+			'date_cre'=>'date'
+		)
+		,'eval'=>array(
+			
+			'fk_product'=>'getProductLink(@val@)'
+		
+		)
+	));
+	
+	
+	/*$kiwi = new TKiwi;
 	$kiwi->fk_soc = $object->id;
 	$kiwi->fk_product = 1;
 	$kiwi->save($PDOdb);
-	
+	*/
 	// pied de page 
 	dol_fiche_end();
 	llxFooter();
 	
+}
+
+function getProductLink($fk_product) {
+	global $conf,$user,$db,$langs;
+	dol_include_once('/product/class/product.class.php');
+				
+	$product_static = new Product($db);
+	$product_static->fetch($fk_product);
+	
+	
+	return $product_static->getNomUrl(1).' '.$product_static->label;
 }
