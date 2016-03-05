@@ -106,6 +106,9 @@ function _card(&$object) {
 			'fk_product'=>'getProductLink(@val@)'
 		
 		)
+		,'search'=>array(
+			'date_cre'=>'calendar'
+		)
 	));
 	
 	

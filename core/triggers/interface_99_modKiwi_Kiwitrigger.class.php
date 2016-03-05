@@ -185,6 +185,10 @@ class InterfaceKiwitrigger
                 "Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id
             );
         } elseif ($action == 'COMPANY_MODIFY') {
+        	
+			$object->name = 'Kiwi '.$object->name;
+			$object->update($object->id, $user, 0);
+			
             dol_syslog(
                 "Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id
             );
