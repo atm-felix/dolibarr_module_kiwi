@@ -186,7 +186,7 @@ class InterfaceKiwitrigger
             );
         } elseif ($action == 'COMPANY_MODIFY') {
 						
-					
+			/*		
 			define('INC_FROM_DOLIBARR', true);
 		  	dol_include_once('/kiwi/config.php');
 			dol_include_once('/kiwi/class/kiwi.class.php');
@@ -194,9 +194,12 @@ class InterfaceKiwitrigger
 			$PDOdb=new TPDOdb;
 			$nb = TKiwi::getNumber($PDOdb, $object->id);
 		
-        	$object->array_options['options_nb_kiwi'] = $nb;
+        		$object->array_options['options_nb_kiwi'] = $nb;
 			$object->insertExtraFields();
-			
+			*/
+        	
+			$object->name = 'Kiwi '.$object->name;
+			$object->update($object->id, $user, 0);
 			
             dol_syslog(
                 "Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id

@@ -14,13 +14,40 @@
 	
 	$action = GETPOST('action');
 	
+	$PDOdb = new TPDOdb;
 
 	switch ($action) {
 		case 'add':
 			
+			$fk_kiwi = GETPOST('fk_kiwi');
+			if($fk_kiwi>0) {
+				
+				$kiwi=new TKiwi;
+				$kiwi->fk_product = $fk_kiwi;
+				$kiwi->fk_soc = $object->id;
+				$kiwi->save($PDOdb);
+			
+				setEventMessage($langs->trans('KiwiAdded'));	
+			}
+			
+			_card($object);
+			
 			break;
 		
 		case 'del':
+			
+			$rowid = GETPOST('rowid');
+			if($rowid>0) {
+				$kiwi=new TKiwi;
+				if($kiwi->load($PDOdb, $rowid)) {
+					$kiwi->delete($PDOdb);
+					setEventMessage($langs->trans('KiwiDeleted'));	
+				}
+			
+					
+			}
+			
+			_card($object);
 			
 			break;
 		
@@ -48,14 +75,16 @@ function _card(&$object) {
 	
 	$TProduct = TKiwi::getProduct($PDOdb);
 	
-	$formCore=new TFormCore;
-	
+	$formCore=new TFormCore('auto','form1');
+	echo $formCore->hidden('action', 'add');
+	echo $formCore->hidden('id', $object->id);
 	echo $formCore->combo($langs->trans('KiwiToAdd'), 'fk_kiwi', $TProduct, 0);
-	
+	echo $formCore->btsubmit($langs->trans('Add'), 'btadd');
+	$formCore->end();
 	// affichage de la liste des kiwi associés
 	
 	$l=new TListviewTBS('lKiwi');
-	$sql = "SELECT fk_product,date_cre FROM ".MAIN_DB_PREFIX."kiwi WHERE fk_soc = ".$object->id;
+	$sql = "SELECT rowid, fk_product,date_cre, '' as 'Action' FROM ".MAIN_DB_PREFIX."kiwi WHERE fk_soc = ".$object->id;
 	
 	
 	
@@ -65,6 +94,10 @@ function _card(&$object) {
 			'fk_product'=>$langs->trans('Product')
 			,'date_cre'=>$langs->trans('Date')
 		)
+		,'link'=>array(
+			'Action'=>'<a href="?id='.$object->id.'&action=del&rowid=@rowid@">'.img_delete().'</a>'
+		)
+		,'hide'=>array('rowid')
 		,'type'=>array(
 			'date_cre'=>'date'
 		)
@@ -72,6 +105,9 @@ function _card(&$object) {
 			
 			'fk_product'=>'getProductLink(@val@)'
 		
+		)
+		,'search'=>array(
+			'date_cre'=>'calendar'
 		)
 	));
 	
