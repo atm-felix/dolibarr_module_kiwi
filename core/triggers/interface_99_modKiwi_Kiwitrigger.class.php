@@ -185,6 +185,19 @@ class InterfaceKiwitrigger
                 "Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id
             );
         } elseif ($action == 'COMPANY_MODIFY') {
+						
+					
+			define('INC_FROM_DOLIBARR', true);
+		  	dol_include_once('/kiwi/config.php');
+			dol_include_once('/kiwi/class/kiwi.class.php');
+			
+			$PDOdb=new TPDOdb;
+			$nb = TKiwi::getNumber($PDOdb, $object->id);
+		
+        	$object->array_options['options_nb_kiwi'] = $nb;
+			$object->insertExtraFields();
+			
+			
             dol_syslog(
                 "Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id
             );
