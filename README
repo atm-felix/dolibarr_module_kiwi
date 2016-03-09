@@ -16,8 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
- Pour les curieux qui auraient cliqué sur ce fichier ou par miracle lu le bas de la page,
- le lien montrant sa création (et donc son absence de finalité) 
- se trouve ici : https://youtu.be/Hsw6TR6kajI
+* Pour les curieux qui auraient cliqué sur ce fichier ou par miracle lu le bas de la page,
+le lien montrant sa création (et donc son absence de finalité) 
+se trouve ici : https://youtu.be/Hsw6TR6kajI
+
+* But du TP du 10/03/2016 et 17/03/2016
+
+- Concevoir un module Dolibarr qui :
+1. Ajouter un onglet dans un objet existant, voir un menu gauche et top si cela s'y prête
+2. Gérer cet objet dans la fiche de cet onglet, dépendant de l'objet qui l'abrite
+3. Ajouter un Hook relatif à cet objet quelque part
+4. Ajouter un trigger relatif à l'objet existant
+5. implémenter une option de configuration propre au module
+
+- Rappelez-vous, vous devez pouvoir définir votre module en une phrase simple.
+Exemple module Kiwi : Il permet de lier des produits "Kiwi" à un tiers et de "Kiwiser" le nom du tiers
 
 
