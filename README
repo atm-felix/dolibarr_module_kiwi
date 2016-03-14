@@ -32,4 +32,15 @@ se trouve ici : https://youtu.be/Hsw6TR6kajI
 - Rappelez-vous, vous devez pouvoir définir votre module en une phrase simple.
 Exemple module Kiwi : Il permet de lier des produits "Kiwi" à un tiers et de "Kiwiser" le nom du tiers
 
+Informations importantes quand à l'environnement Gigondas
+1. Utilisateur admin de base pour activer votre module test / test
+2. Emplacement des modules dolibarr /opt/apache-2.4/htdocs/dolibarr-3.8.2/htdocs/custom
+3. La racine de votre module doit être à la racine de votre répertoire (login). Si vous n'arrivez pas à cloner votre module, clonez le dans votre module puis faites un $ mv mon_module_clone/* ../
+
+Pour mémoire les commandes importantes de base
+1. dans le module default $ ./new_module.sh NomDeMonModule 209[mon numéro de module]
+2. Pour cloner votre module $ git clone [url de mon dépôt github] NomDeMonModule
+3. Pour commiter vos modifications $ git add * & git commit
+4. Pour pousser votre correction sur le dépôt $ git push origin master
+5. Pour déployer votre correctif sur le serveur $ git pull origin master
 
