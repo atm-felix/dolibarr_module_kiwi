@@ -23,11 +23,12 @@ se trouve ici : https://youtu.be/Hsw6TR6kajI
 * But du TP du 10/03/2016 et 17/03/2016
 
 - Concevoir un module Dolibarr qui :
-1. Ajouter un onglet dans un objet existant, voir un menu gauche et top si cela s'y prête
+1. Ajouter un onglet dans un objet existant, voir un menu gauche et top si cela s'y prête (/NomDeMonModule/core/module/modNomDeMonModule.php section $this->tabs )
 2. Gérer cet objet dans la fiche de cet onglet, dépendant de l'objet qui l'abrite
 3. Ajouter un Hook relatif à cet objet quelque part
-4. Ajouter un trigger relatif à l'objet existant
+4. Ajouter un trigger relatif à l'objet existant  (les deux /NomDeMonModule/core/module/modNomDeMonModule.php section $this->module_parts )
 5. implémenter une option de configuration propre au module
+6. Pensez à désactiver/réactiver le module lors de l'ajout de droits, de tabulations, de triggers ou de hooks.
 
 - Rappelez-vous, vous devez pouvoir définir votre module en une phrase simple.
 Exemple module Kiwi : Il permet de lier des produits "Kiwi" à un tiers et de "Kiwiser" le nom du tiers
@@ -43,4 +44,5 @@ Pour mémoire les commandes importantes de base
 3. Pour commiter vos modifications $ git add * & git commit
 4. Pour pousser votre correction sur le dépôt $ git push origin master
 5. Pour déployer votre correctif sur le serveur $ git pull origin master
+6. Connaître l'état de votre dépôt
 
